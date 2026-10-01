@@ -272,6 +272,11 @@ main > .section:first-of-type {
   margin-top: 0;
 }
 
+/* empty sections (e.g. left over from the AEM content upload) take no space in the grid */
+main > .section:empty {
+  display: none;
+}
+
 @media (width >= 900px) {
   main > .section > div {
     padding: 0 32px;

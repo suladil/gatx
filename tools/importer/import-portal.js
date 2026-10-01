@@ -195,12 +195,12 @@ export default {
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
 
-    // Images cropped from the screenshot live in the project (/images/portal/), not on the
-    // local stand-in source host, so keep them root-relative.
+    // Images cropped from the screenshot are stored next to the content (content/images/),
+    // so reference them relative to the page; the AEM content upload ingests relative images.
     const sourceHost = new URL(params.originalURL).host;
     main.querySelectorAll('img').forEach((img) => {
       const src = new URL(img.getAttribute('src'), params.originalURL);
-      if (src.host === sourceHost) img.setAttribute('src', src.pathname);
+      if (src.host === sourceHost) img.setAttribute('src', `images/${src.pathname.split('/').pop()}`);
     });
 
     // 6. Target path
