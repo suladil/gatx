@@ -1,0 +1,63 @@
+/* Cards Contact - vertical service team list: photo left, name / role / phone-fax right */
+
+/* `main .cards-contact.block` outranks the global `main > .section.widget h3 / p` rules */
+main .cards-contact.block > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* single-column list item: photo left, text right (never a grid of cards) */
+main .cards-contact.block > ul > li {
+  display: grid;
+  grid-template-columns: 83px minmax(0, 1fr);
+  gap: 6px;
+  align-items: start;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+main .cards-contact.block > ul > li.cards-contact-no-image {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* photo: 83px wide, natural aspect ratio */
+main .cards-contact.block .cards-contact-image,
+main .cards-contact.block .cards-contact-image p,
+main .cards-contact.block .cards-contact-image picture {
+  display: block;
+  margin: 0;
+  line-height: 0;
+}
+
+main .cards-contact.block .cards-contact-image img {
+  display: block;
+  width: 83px;
+  height: auto;
+}
+
+main .cards-contact.block .cards-contact-body {
+  color: var(--text-color);
+  font-size: 13px;
+}
+
+main .cards-contact.block .cards-contact-body p {
+  margin: 4px 0;
+}
+
+main .cards-contact.block .cards-contact-body .cards-contact-name {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+main .cards-contact.block .cards-contact-body .cards-contact-role {
+  margin: 0;
+  color: var(--brand-muted-color);
+}

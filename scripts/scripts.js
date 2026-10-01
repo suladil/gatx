@@ -83,6 +83,35 @@ function buildAutoBlocks() {
   }
 }
 
+/**
+ * Turns literal :icon-name: tokens in text into icon spans, so decorateIcons
+ * can render them (authored icons may arrive as plain text).
+ * @param {Element} main The container element
+ */
+function decorateIconTokens(main) {
+  const token = /:([a-z][a-z0-9-]*):/g;
+  const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  while (walker.nextNode()) {
+    if (token.test(walker.currentNode.nodeValue)) nodes.push(walker.currentNode);
+    token.lastIndex = 0;
+  }
+  nodes.forEach((node) => {
+    const parts = node.nodeValue.split(token);
+    const fragment = document.createDocumentFragment();
+    parts.forEach((part, i) => {
+      if (i % 2) {
+        const span = document.createElement('span');
+        span.className = `icon icon-${part}`;
+        fragment.append(span);
+      } else if (part) {
+        fragment.append(part);
+      }
+    });
+    node.replaceWith(fragment);
+  });
+}
+
 function a11yLinks(main) {
   const links = main.querySelectorAll('a');
   links.forEach((link) => {
@@ -103,6 +132,7 @@ function a11yLinks(main) {
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
+  decorateIconTokens(main);
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);

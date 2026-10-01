@@ -1,0 +1,318 @@
+{
+  "templates": [
+    {
+      "name": "maintenance",
+      "urls": [
+        "http://localhost:8765/maintenance/",
+        "http://localhost:8765/car-facts/"
+      ],
+      "representativeUrl": "http://localhost:8765/maintenance/",
+      "description": "GATX portal report pages (Maintenance - Service Events, Car Facts - Car Location Messages): page title band, report filters sidebar, one or two wide data-table report panels",
+      "blocks": [
+        {
+          "name": "accordion-filters",
+          "instances": [
+            ".filters .group"
+          ]
+        },
+        {
+          "name": "table-report",
+          "instances": [
+            ".report table"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "1",
+          "name": "Page Title",
+          "selector": [
+            ".page-title"
+          ],
+          "style": "page-title",
+          "blocks": [],
+          "defaultContent": [
+            ".page-title .section-name",
+            ".page-title h1"
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Report Filters Sidebar",
+          "selector": [
+            "aside.filters"
+          ],
+          "style": "widget, tall, report-filters",
+          "blocks": [
+            "accordion-filters"
+          ],
+          "defaultContent": [
+            ".filters h2",
+            ".filters .hint",
+            ".filters .actions",
+            ".filters .shortcut"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Service Events Report",
+          "selector": [
+            "section.report"
+          ],
+          "style": "widget, report",
+          "blocks": [
+            "table-report"
+          ],
+          "defaultContent": [
+            ".report .report-tools",
+            ".report .intro",
+            ".report .pager"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "Second Report Panel",
+          "selector": [
+            "section.report + section.report"
+          ],
+          "style": "widget, report",
+          "blocks": [
+            "table-report"
+          ],
+          "defaultContent": [
+            ".report + .report .report-tools"
+          ]
+        }
+      ],
+      "urlPattern": "/*"
+    },
+    {
+      "name": "portal",
+      "urls": [
+        "http://localhost:8765/portal/"
+      ],
+      "representativeUrl": "http://localhost:8765/portal/",
+      "description": "To be named in naming step",
+      "blocks": [
+        {
+          "name": "table-alerts",
+          "instances": [
+            ".widget.fleet-alerts table"
+          ]
+        },
+        {
+          "name": "table-totals",
+          "instances": [
+            ".widget.leased-fleet table",
+            ".widget.maintenance table",
+            ".widget.compliance table"
+          ]
+        },
+        {
+          "name": "cards-contact",
+          "instances": [
+            ".widget.service-team .team-member"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "1",
+          "name": "Fleet Alerts",
+          "selector": [
+            ".widget.fleet-alerts"
+          ],
+          "style": "widget",
+          "blocks": [
+            "table-alerts"
+          ],
+          "defaultContent": [
+            ".widget.fleet-alerts > h2",
+            ".widget.fleet-alerts > p.as-of"
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Quick Search",
+          "selector": [
+            ".widget.quick-search"
+          ],
+          "style": "widget",
+          "blocks": [],
+          "defaultContent": [
+            ".widget.quick-search > h2",
+            ".widget.quick-search > form",
+            ".widget.quick-search > ul"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Leased Fleet",
+          "selector": [
+            ".widget.leased-fleet"
+          ],
+          "style": "widget",
+          "blocks": [
+            "table-totals"
+          ],
+          "defaultContent": [
+            ".widget.leased-fleet > h2",
+            ".widget.leased-fleet > p"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "Your Service Team",
+          "selector": [
+            ".widget.service-team"
+          ],
+          "style": "widget, tall",
+          "blocks": [
+            "cards-contact"
+          ],
+          "defaultContent": [
+            ".widget.service-team > h2",
+            ".widget.service-team > p"
+          ]
+        },
+        {
+          "id": "5",
+          "name": "News & Resources",
+          "selector": [
+            ".widget.news"
+          ],
+          "style": "widget",
+          "blocks": [],
+          "defaultContent": [
+            ".widget.news > h2",
+            ".widget.news > p",
+            ".widget.news > h3"
+          ]
+        },
+        {
+          "id": "6",
+          "name": "Maintenance",
+          "selector": [
+            ".widget.maintenance"
+          ],
+          "style": "widget",
+          "blocks": [
+            "table-totals"
+          ],
+          "defaultContent": [
+            ".widget.maintenance > h2",
+            ".widget.maintenance > p"
+          ]
+        },
+        {
+          "id": "7",
+          "name": "Compliance Full Service",
+          "selector": [
+            ".widget.compliance"
+          ],
+          "style": "widget",
+          "blocks": [
+            "table-totals"
+          ],
+          "defaultContent": [
+            ".widget.compliance > h2",
+            ".widget.compliance > p"
+          ]
+        }
+      ],
+      "urlPattern": "/*"
+    },
+    {
+      "name": "reports",
+      "urls": [
+        "http://localhost:8765/reports/"
+      ],
+      "representativeUrl": "http://localhost:8765/reports/",
+      "description": "GATX portal report builder page: page title band, wide builder panel with column picker, stacked right sidebar panels",
+      "blocks": [
+        {
+          "name": "accordion-picker",
+          "instances": [
+            ".builder .col-group"
+          ]
+        }
+      ],
+      "urlPattern": "/reports/*",
+      "sections": [
+        {
+          "id": "1",
+          "name": "Page Title",
+          "selector": [
+            ".page-title"
+          ],
+          "style": "page-title",
+          "blocks": [],
+          "defaultContent": [
+            ".page-title .section-name",
+            ".page-title h1"
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Report Builder",
+          "selector": [
+            "section.builder"
+          ],
+          "style": "widget, report-builder",
+          "blocks": [
+            "accordion-picker"
+          ],
+          "defaultContent": [
+            ".builder .user",
+            ".builder h2.bar",
+            ".builder .save",
+            ".builder .as-of",
+            ".builder .actions"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Fleet Summary",
+          "selector": [
+            "aside.side > section.panel:first-child"
+          ],
+          "style": "widget, tall, report-side",
+          "blocks": [],
+          "defaultContent": [
+            "aside.side > section.panel:first-child h2",
+            "aside.side > section.panel:first-child .hint",
+            "aside.side > section.panel:first-child ul"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "My Saved Templates",
+          "selector": [
+            "aside.side > section.panel.saved"
+          ],
+          "style": "widget, tall, report-side",
+          "blocks": [],
+          "defaultContent": [
+            "aside.side > section.panel.saved h2"
+          ]
+        },
+        {
+          "id": "5",
+          "name": "Helpful Hints",
+          "selector": [
+            "aside.side > section.panel.hints"
+          ],
+          "style": "widget, tall, report-side",
+          "blocks": [],
+          "defaultContent": [
+            "aside.side > section.panel.hints h2",
+            "aside.side > section.panel.hints ul"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "projectType": "xwalk"
+  }
+}

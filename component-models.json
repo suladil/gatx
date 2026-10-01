@@ -142,6 +142,66 @@
     ]
   },
   {
+    "id": "accordion-filters-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "type",
+        "label": "Filter Type",
+        "options": [
+          {
+            "name": "Checkboxes",
+            "value": "checkbox"
+          },
+          {
+            "name": "Prefixed Text",
+            "value": "prefixed-text"
+          },
+          {
+            "name": "Date Range",
+            "value": "date-range"
+          }
+        ]
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "options",
+        "label": "Options (list)"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "help",
+        "label": "Help Text"
+      }
+    ]
+  },
+  {
+    "id": "accordion-picker-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "options",
+        "label": "Options (list)"
+      }
+    ]
+  },
+  {
     "id": "accordion-item",
     "fields": [
       {
@@ -150,6 +210,31 @@
         "name": "summary",
         "value": "",
         "label": "Summary"
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "cards-contact-card",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Photo",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt"
       },
       {
         "component": "richtext",
@@ -367,6 +452,141 @@
             ]
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "table-alerts-row",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column1text",
+        "label": "Column1"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column2text",
+        "label": "Column2"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column3text",
+        "label": "Column3"
+      }
+    ]
+  },
+  {
+    "id": "table-report-row",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column1text",
+        "label": "Column 1"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column2text",
+        "label": "Column 2"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column3text",
+        "label": "Column 3"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column4text",
+        "label": "Column 4"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column5text",
+        "label": "Column 5"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column6text",
+        "label": "Column 6"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column7text",
+        "label": "Column 7"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column8text",
+        "label": "Column 8"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column9text",
+        "label": "Column 9"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column10text",
+        "label": "Column 10"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column11text",
+        "label": "Column 11"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column12text",
+        "label": "Column 12"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column13text",
+        "label": "Column 13"
+      }
+    ]
+  },
+  {
+    "id": "table-totals-row",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column1text",
+        "label": "Column1"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column2text",
+        "label": "Column2"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column3text",
+        "label": "Column3"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column4text",
+        "label": "Column4"
       }
     ]
   },

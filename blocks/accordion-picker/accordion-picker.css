@@ -1,0 +1,218 @@
+/* Accordion Picker - report column picker */
+
+.accordion-picker.block {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0 2px;
+  margin: 14px 12px 0;
+}
+
+.accordion-picker .accordion-picker-group {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 226px;
+  padding-bottom: 11px;
+  background: #e4e4e4;
+}
+
+/* header: title | search | clear | move-up */
+.accordion-picker .accordion-picker-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 46px;
+  padding: 4px 10px;
+  background: var(--brand-table-head-color);
+}
+
+.accordion-picker .accordion-picker-title {
+  flex: 0 0 auto;
+  color: var(--text-color);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.accordion-picker .accordion-picker-search {
+  box-sizing: border-box;
+  flex: 1 1 120px;
+  min-width: 0;
+  max-width: 250px;
+  margin: 0 5px 0 0;
+  font-size: 13px;
+  line-height: normal;
+}
+
+main .accordion-picker .accordion-picker-icon-button,
+main .accordion-picker .accordion-picker-icon-button:hover,
+main .accordion-picker .accordion-picker-icon-button:focus {
+  display: inline-flex;
+  flex: 0 0 auto;
+  margin: 0 8px 0 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: none;
+  overflow: visible;
+  cursor: pointer;
+}
+
+main .accordion-picker .accordion-picker-icon-button:focus-visible {
+  outline: 2px solid var(--text-color);
+  outline-offset: 1px;
+}
+
+.accordion-picker .accordion-picker-icon-button img {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+/* body: select all / unselect all + checkbox list */
+.accordion-picker .accordion-picker-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+main .section .accordion-picker .accordion-picker-actions {
+  margin: 13px 12px 9px;
+  color: var(--text-color);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+main .accordion-picker .accordion-picker-link,
+main .accordion-picker .accordion-picker-link:hover,
+main .accordion-picker .accordion-picker-link:focus {
+  display: inline;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: none;
+  color: #333;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-align: inherit;
+  white-space: normal;
+  overflow: visible;
+  cursor: pointer;
+}
+
+main .accordion-picker .accordion-picker-link:hover {
+  text-decoration: underline;
+}
+
+.accordion-picker .accordion-picker-checkboxes {
+  margin: 0;
+  padding: 0 16px;
+  list-style: none;
+}
+
+.accordion-picker .accordion-picker-checkboxes li {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin: 0 0 8px;
+  color: var(--text-color);
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+
+.accordion-picker .accordion-picker-checkboxes input {
+  flex: 0 0 auto;
+  width: 13px;
+  height: 13px;
+  margin: 3px 3px 3px 4px;
+}
+
+.accordion-picker .accordion-picker-checkboxes label {
+  cursor: pointer;
+}
+
+.accordion-picker .accordion-picker-checkboxes li.accordion-picker-filtered {
+  display: none;
+}
+
+/* heading toggle (h2 directly before the block; bar styled by styles.css) */
+main .section .accordion-picker-heading .accordion-picker-toggle,
+main .section .accordion-picker-heading .accordion-picker-toggle:hover,
+main .section .accordion-picker-heading .accordion-picker-toggle:focus {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  width: calc(100% + 64px);
+  max-width: none;
+  margin: -6px -16px -6px -48px;
+  border: 0;
+  border-radius: 0;
+  padding: 6px 16px 6px 48px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  white-space: normal;
+  overflow: visible;
+  cursor: pointer;
+}
+
+main .section .accordion-picker-heading .accordion-picker-toggle:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+}
+
+main .section .accordion-picker-heading .accordion-picker-indicator {
+  position: absolute;
+  top: 10px;
+  left: 16px;
+  color: #fff;
+  font-size: 16px;
+  line-height: normal;
+}
+
+/* report name input before the save button */
+main .section .accordion-picker-save-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+main .section .accordion-picker-save-row .accordion-picker-report-name {
+  box-sizing: border-box;
+  flex: 0 1 256px;
+  min-width: 0;
+  margin: 0;
+  font-size: 13px;
+  line-height: normal;
+}
+
+/* collapsed: hide the picker and its save row */
+main .section .accordion-picker-hidden,
+main .section .default-content-wrapper > .accordion-picker-hidden {
+  display: none;
+}
+
+@media (width >= 900px) {
+  .accordion-picker.block {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .accordion-picker .accordion-picker-header {
+    flex-wrap: nowrap;
+    height: 46px;
+    padding: 0 10px;
+  }
+
+  .accordion-picker .accordion-picker-search {
+    flex: 0 1 250px;
+  }
+}

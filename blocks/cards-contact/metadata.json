@@ -1,0 +1,30 @@
+{
+  "variantName": "cards-contact",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "structure": "vertical list of contact cards (single column, NOT a grid), image left ~83px wide, text right",
+    "text": "name 16-18px dark #222 normal weight; role grey #999 13px; phone/fax 13-14px dark",
+    "background": "transparent on light grey-blue panel #e3e8eb",
+    "colorScheme": "light",
+    "sectionStyle": "widget, tall",
+    "purpose": "Service team contact list, one contact per row stacked vertically"
+  },
+  "contentPattern": {
+    "pattern": "service team contact list: headshot + name + title + phone/fax",
+    "structure": "first cell is the portrait photo (with alt text = person name); second cell is rich text with the name as a heading (h3), the role as a paragraph, and a paragraph with Phone: ... line break Fax: ..."
+  },
+  "usage": {
+    "pagesUsing": [
+      {
+        "url": "http://localhost:8765/portal/",
+        "instanceId": null,
+        "screenshot": "migration-work/screenshot.png"
+      }
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-30T00:54:13.963Z"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

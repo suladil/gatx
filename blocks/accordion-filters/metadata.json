@@ -1,0 +1,29 @@
+{
+  "variantName": "accordion-filters",
+  "baseBlock": "accordion",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "structure": "vertical stack of always-open collapsible filter groups inside a narrow (~220px) light grey-blue sidebar",
+    "group": "each group a slightly lighter box (#eef1f3) with 8px 10px padding, 10px gap; title 13px normal dark with a small down-triangle toggle before it",
+    "controls": "checkbox + 11px label per option; prefixed-text = small select (GATX) + text input (~92px) side by side, then grey 10px help text; date-range = Start/End labels with small text inputs and calendar icon (/icons/calendar.svg)",
+    "extra": "block appends a vertical rotated \"« Report Filters\" tab (writing-mode vertical-rl, 20px, grey panel #e3e8eb, rounded right corners) to the right edge of its section",
+    "colorScheme": "light"
+  },
+  "contentPattern": {
+    "pattern": "report filter groups: title | type (checkbox|prefixed-text|date-range) | option list | optional help",
+    "structure": "one row per filter group: title | type (checkbox | prefixed-text | date-range) | options list (ul; checkbox labels, prefix values, or Start/End labels) | optional help text"
+  },
+  "usage": {
+    "pagesUsing": [
+      {
+        "url": "http://localhost:8765/maintenance/",
+        "instanceId": null,
+        "screenshot": "migration-work/screenshot.png"
+      }
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-30T21:09:44.167Z"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

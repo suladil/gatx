@@ -1,0 +1,30 @@
+{
+  "variantName": "table-report",
+  "baseBlock": "table",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "structure": "wide 13-column data table in a white panel",
+    "header": "light blue #83b8ec cells, 10px bold text #2d4a6a, left aligned, top aligned, ~50px tall, 2px white vertical gaps between columns",
+    "rows": "12px text #333, top aligned, padding 10px 8px 18px, striped: odd rows #e6e6e6, even rows #cacaca, no horizontal gaps",
+    "cells": "icon cells (:expand:, :alert:, :wrench: icons ~14px) in first two columns; underlined blue (#1f3fbf) 10px links in Disposition",
+    "responsive": "horizontal scroll wrapper on narrow screens",
+    "colorScheme": "light"
+  },
+  "contentPattern": {
+    "pattern": "service events report: header row + many event rows, 13 columns, icons and links",
+    "structure": "first row is the header (column names); each following row is one report record with the same number of cells (13 for the service events report). Cells may be empty, contain :icon: names (:expand:, :alert:, :wrench:) or links."
+  },
+  "usage": {
+    "pagesUsing": [
+      {
+        "url": "http://localhost:8765/maintenance/",
+        "instanceId": null,
+        "screenshot": "migration-work/screenshot.png"
+      }
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-30T21:09:44.167Z"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

@@ -1,0 +1,30 @@
+{
+  "variantName": "table-totals",
+  "baseBlock": "table",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "structure": "data table inside a white dashboard widget; column count varies (2-4)",
+    "headers": "light blue #8ab9ea header cells, small 10px dark text left aligned, tall (~50px) header row",
+    "rows": "first column label on light grey #eee (14px), numeric cells centered on grey #ddd (12px); 2px white gaps; LAST ROW = Totals row, bold text on darker grey #a2a2a2 (separated visually by empty space above in source; not required)",
+    "colorScheme": "light",
+    "sectionStyle": "widget",
+    "purpose": "Fleet metrics by car type ending in a bold Totals row"
+  },
+  "contentPattern": {
+    "pattern": "fleet metrics by car type with a bold totals row as the final row",
+    "structure": "first row is the header (Car Type, then 1-3 metric column names); each following row is a car type label followed by its numbers; the LAST row is always the Totals row (label Totals plus the column totals) and renders bold. Works with 2, 3 or 4 columns"
+  },
+  "usage": {
+    "pagesUsing": [
+      {
+        "url": "http://localhost:8765/portal/",
+        "instanceId": null,
+        "screenshot": "migration-work/screenshot.png"
+      }
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-30T00:54:13.963Z"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

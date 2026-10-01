@@ -1,0 +1,30 @@
+{
+  "variantName": "table-alerts",
+  "baseBlock": "table",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "structure": "compact data table inside a white dashboard widget",
+    "headers": "first header cell empty/transparent; Immediate Action header dark red #710100 with white text; Near Term Action header amber #f7b500 with dark orange text; small (10-11px) centered header text, tall header row",
+    "rows": "first column labels left-aligned on light grey #eee, 13-14px; numeric cells centered on darker grey #ddd, 12px; 2px white gaps between cells",
+    "colorScheme": "light",
+    "sectionStyle": "widget",
+    "purpose": "Fleet Alerts status matrix of open items by action urgency"
+  },
+  "contentPattern": {
+    "pattern": "status matrix: row labels x action-urgency columns",
+    "structure": "first row is the header: an empty first cell, then one cell per urgency column (e.g. Immediate Action, Near Term Action); each following row is a row label (e.g. Open Orders) followed by one numeric count per urgency column. Always 3 columns"
+  },
+  "usage": {
+    "pagesUsing": [
+      {
+        "url": "http://localhost:8765/portal/",
+        "instanceId": null,
+        "screenshot": "migration-work/screenshot.png"
+      }
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-30T00:54:13.963Z"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

@@ -1,0 +1,243 @@
+/* Accordion Filters - report filter sidebar */
+
+/*
+ * Section: the grey panel only covers the left part of the column; the
+ * right 32px holds the vertical "Report Filters" tab over the page background.
+ */
+main > .section.widget.accordion-filters-container:has(> .accordion-filters-toggle) {
+  position: relative;
+  border-radius: 6px 0 0;
+  padding-right: 42px;
+  background: linear-gradient(
+    to right,
+    var(--brand-panel-alt-color) calc(100% - 32px),
+    transparent calc(100% - 32px)
+  );
+}
+
+/*
+ * The narrower panel no longer fits Clear + Update on one line; let the
+ * Update button run into the right gutter (as in the source) instead of wrapping.
+ */
+main > .section.widget.accordion-filters-container:has(> .accordion-filters-toggle)
+  > .default-content-wrapper > p.button-container:last-of-type {
+  margin-right: -32px;
+}
+
+.accordion-filters.block {
+  display: block;
+}
+
+/* filter group box */
+.accordion-filters .accordion-filters-group {
+  margin: 0 -2px 10px;
+  padding: 8px 10px;
+  background: #eef1f3;
+  color: var(--text-color);
+  font-size: 11px;
+  line-height: normal;
+}
+
+/* group title with small down-triangle toggle */
+.accordion-filters .accordion-filters-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 4px;
+  padding-left: 10px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  list-style: none;
+}
+
+.accordion-filters .accordion-filters-title::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-filters .accordion-filters-title::before {
+  content: '';
+  flex: 0 0 auto;
+  border-top: 4px solid currentcolor;
+  border-right: 3px solid transparent;
+  border-left: 3px solid transparent;
+  transition: transform 0.2s;
+}
+
+.accordion-filters .accordion-filters-group:not([open]) .accordion-filters-title {
+  margin-bottom: 0;
+}
+
+.accordion-filters .accordion-filters-group:not([open]) .accordion-filters-title::before {
+  transform: rotate(-90deg);
+}
+
+.accordion-filters .accordion-filters-body {
+  margin: 0;
+}
+
+/* checkbox options: inline checkbox, wrapped text returns under the box */
+.accordion-filters .accordion-filters-checkboxes {
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.accordion-filters .accordion-filters-checkboxes li {
+  display: block;
+  margin: 2px 0;
+}
+
+.accordion-filters .accordion-filters-checkboxes input {
+  width: 13px;
+  height: 13px;
+  margin: 0 3px 0 0;
+  vertical-align: -3px;
+}
+
+/* prefixed text: GATX select + car number input */
+.accordion-filters .accordion-filters-prefixed {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 0;
+}
+
+.accordion-filters .accordion-filters-prefixed select,
+.accordion-filters .accordion-filters-prefixed input {
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 13.3333px;
+}
+
+.accordion-filters .accordion-filters-prefixed select {
+  flex: 0 0 auto;
+  height: 19px;
+  padding: 0;
+}
+
+.accordion-filters .accordion-filters-prefixed input {
+  flex: 0 1 92px;
+  min-width: 0;
+  height: 19px;
+  padding: 1px 2px;
+}
+
+/* help text under the inputs */
+main .accordion-filters .accordion-filters-help p {
+  margin: 11px 0 0;
+  color: #333;
+  font-size: 10px;
+  line-height: normal;
+}
+
+/* date range: label | input | calendar icon */
+.accordion-filters .accordion-filters-dates {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 6px 0 0;
+}
+
+.accordion-filters .accordion-filters-date {
+  display: grid;
+  grid-template-columns: 29px 58px auto;
+  align-items: center;
+  justify-content: start;
+  gap: 4px;
+}
+
+.accordion-filters .accordion-filters-date label {
+  font-size: 11px;
+}
+
+.accordion-filters .accordion-filters-date input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 16px;
+  margin: 0;
+  border: 0;
+  padding: 1px 2px;
+  background: #fff;
+  font-size: 11px;
+}
+
+main .accordion-filters .accordion-filters-calendar,
+main .accordion-filters .accordion-filters-calendar:hover,
+main .accordion-filters .accordion-filters-calendar:focus {
+  display: inline-flex;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.accordion-filters .accordion-filters-calendar img {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+/* vertical "« Report Filters" collapse tab on the section's right edge */
+main .section .accordion-filters-toggle,
+main .section .accordion-filters-toggle:hover,
+main .section .accordion-filters-toggle:focus {
+  position: absolute;
+  top: 0;
+  right: 0;
+  box-sizing: border-box;
+  display: block;
+  width: 32px;
+  height: 210px;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0 6px 6px 0;
+  padding: 30px 4px 0;
+  background: var(--brand-panel-alt-color);
+  color: #333;
+  font-family: var(--body-font-family);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: normal;
+  text-align: start;
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+main .section .accordion-filters-toggle span {
+  text-orientation: upright;
+}
+
+main .section .accordion-filters-toggle:focus-visible {
+  outline: 2px solid var(--brand-title-color);
+  outline-offset: -2px;
+}
+
+/* collapsed: only the tab remains */
+main > .section.widget.accordion-filters-container.filters-collapsed:has(> .accordion-filters-toggle) {
+  min-height: 210px;
+  padding: 0;
+  background: none;
+}
+
+/* specificity must beat the global report-filters default-content rules */
+main > .section.accordion-filters-container.filters-collapsed:has(> .accordion-filters-toggle)
+  > div:not(.accordion-filters-toggle) {
+  display: none;
+}
+
+main .section.filters-collapsed .accordion-filters-toggle {
+  right: auto;
+  left: 0;
+}
+
+@media (width >= 900px) {
+  main:has(> .section.accordion-filters-container.filters-collapsed) {
+    grid-template-columns: 32px minmax(0, 1fr);
+  }
+}

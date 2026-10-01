@@ -59,7 +59,13 @@
         "table",
         "text",
         "title",
-        "video"
+        "video",
+        "table-alerts",
+        "table-totals",
+        "cards-contact",
+        "accordion-filters",
+        "table-report",
+        "accordion-picker"
       ]
     }
   ]

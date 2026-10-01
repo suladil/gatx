@@ -1,0 +1,100 @@
+/*
+ * Table Totals
+ * Values extracted from the source portal tables (.widget.leased-fleet / .maintenance /
+ * .compliance table) and checked against the customer screenshot.
+ * Sizes are explicit px because the page renders in quirks mode, where table cells
+ * do not inherit font-size from the widget.
+ */
+.table-totals.block {
+  /*
+   * cells run flush to the widget panel edges in the screenshot:
+   * 10px panel padding + 2px outer border-spacing
+   */
+  margin: 0 -12px;
+  overflow-x: auto;
+}
+
+.table-totals.block table {
+  width: 100%;
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 2px;
+  table-layout: fixed;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  line-height: normal;
+}
+
+.table-totals.block th,
+.table-totals.block td {
+  vertical-align: middle;
+  line-height: normal;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  overflow-wrap: break-word;
+}
+
+.table-totals.block th p,
+.table-totals.block td p {
+  margin: 0;
+}
+
+/* header row: light blue, small left-aligned labels, tall row */
+.table-totals.block thead th {
+  box-sizing: border-box;
+  height: 52px;
+  padding: 6px 4px;
+  background-color: var(--brand-table-head-color);
+  font-size: 10px;
+  font-weight: 400;
+  text-align: left;
+}
+
+/* body cells */
+.table-totals.block tbody th,
+.table-totals.block tbody td {
+  padding: 6px;
+}
+
+/* first column: car type label */
+.table-totals.block .table-totals-label {
+  padding-left: 10px;
+  background-color: var(--brand-table-cell-color);
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+}
+
+/* numeric columns */
+.table-totals.block .table-totals-value {
+  background-color: var(--brand-table-value-color);
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* zebra striping: even data rows are darker in the screenshot (sampled #c9c9c9) */
+.table-totals.block tbody tr:nth-child(even):not(.table-totals-total) > * {
+  background-color: #c9c9c9;
+}
+
+/* totals row: always the last row, darker grey; only the "Totals" label is bold (screenshot) */
+.table-totals.block tr.table-totals-total th,
+.table-totals.block tr.table-totals-total td {
+  background-color: var(--brand-table-total-color);
+}
+
+.table-totals.block tr.table-totals-total .table-totals-label {
+  font-weight: 700;
+}
+
+/* label column width by column count (value columns share the rest equally) */
+.table-totals.block.table-totals-cols-2 thead th:first-child {
+  width: 66%;
+}
+
+.table-totals.block.table-totals-cols-3 thead th:first-child,
+.table-totals.block.table-totals-cols-4 thead th:first-child {
+  width: 40%;
+}

@@ -1,0 +1,29 @@
+{
+  "variantName": "accordion-picker",
+  "baseBlock": "accordion",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "structure": "2-column grid (2x2) of report-column groups inside a white panel, 2px gap between columns, stacks to 1 column below 900px",
+    "header": "each group has a header bar with bold group name, a ~250px search input, and two small square icon buttons (clear /icons/clear.svg, move-up /icons/move-up.svg)",
+    "body": "body with bold \"Select All / Unselect All\" links and a checkbox list",
+    "behavior": "search filters the group options; clear empties the search; move-up moves checked options to the top; select all / unselect all toggle checkboxes; the preceding h2 bar toggles the picker open/closed (aria-expanded, ▼/▶); adds an \"Enter Report Name\" input before the following Save Report Template button",
+    "colorScheme": "light"
+  },
+  "contentPattern": {
+    "pattern": "report column picker: group title | option list",
+    "structure": "one row per column group: title (text) | options (richtext ul, one li per checkbox label)"
+  },
+  "usage": {
+    "pagesUsing": [
+      {
+        "url": "http://localhost:8765/reports/",
+        "instanceId": null,
+        "screenshot": "migration-work/screenshot.png"
+      }
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-30T00:00:00.000Z"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

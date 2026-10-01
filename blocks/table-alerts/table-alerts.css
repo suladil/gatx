@@ -1,0 +1,72 @@
+/* Table Alerts - Fleet Alerts status matrix (label column + urgency columns) */
+.table-alerts.block {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-alerts.block table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 2px;
+  table-layout: auto;
+  font-size: 13px;
+  color: var(--text-color);
+}
+
+.table-alerts.block th,
+.table-alerts.block td {
+  vertical-align: middle;
+  font-weight: 400;
+}
+
+main .table-alerts.block th p,
+main .table-alerts.block td p {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+/* header row: tall, narrow urgency columns with small centered text */
+.table-alerts.block thead th {
+  padding: 1px 4px;
+  font-size: 10px;
+  line-height: 21px;
+  text-align: center;
+}
+
+/* empty corner cell stays transparent (panel white shows through) */
+.table-alerts.block thead th.table-alerts-corner {
+  width: 100%;
+  padding: 0;
+  background-color: transparent;
+}
+
+.table-alerts.block thead th.table-alerts-heading[data-col="2"] {
+  background-color: var(--brand-alert-immediate-color);
+  color: #fff;
+}
+
+.table-alerts.block thead th.table-alerts-heading[data-col="3"] {
+  background-color: var(--brand-alert-near-color);
+  color: var(--brand-alert-near-text-color);
+}
+
+/* body rows */
+.table-alerts.block .table-alerts-label {
+  width: 100%;
+  padding: 5px 2px;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: left;
+  background-color: var(--brand-table-cell-color);
+}
+
+.table-alerts.block .table-alerts-value {
+  padding: 5px 4px;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  white-space: nowrap;
+  background-color: var(--brand-table-total-color);
+}

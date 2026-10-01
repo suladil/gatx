@@ -1,0 +1,30 @@
+/* GATX brand tokens (extracted from the portal screenshot reconstruction) */
+:root {
+  --heading-font-family: arial, helvetica, sans-serif;
+  --body-font-family: arial, helvetica, sans-serif;
+  --background-color: #3b70a4;
+  --text-color: #222;
+  --link-color: #999;
+  --link-hover-color: #3b7cc0;
+  --section-padding: 12px;
+  --page-width: 1280px;
+
+  /* portal palette */
+  --brand-title-color: #3b7cc0;
+  --brand-panel-color: #fff;
+  --brand-panel-alt-color: #e3e8eb;
+  --brand-rule-color: #ddd;
+  --brand-muted-color: #999;
+  --brand-faint-color: #aaa;
+  --brand-accent-color: #c00;
+  --brand-action-color: #f06a0f;
+  --brand-table-head-color: #8ab9ea;
+  --brand-table-cell-color: #eee;
+  --brand-table-value-color: #ddd;
+  --brand-table-total-color: #a2a2a2;
+  --brand-alert-immediate-color: #710100;
+  --brand-alert-near-color: #f7b500;
+  --brand-alert-near-text-color: #9a4000;
+  --brand-title-accent-color: #f7c21b;
+  --brand-title-gold-color: #e0c35a;
+}

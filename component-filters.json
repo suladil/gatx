@@ -24,13 +24,37 @@
       "table",
       "text",
       "title",
-      "video"
+      "video",
+      "table-alerts",
+      "table-totals",
+      "cards-contact",
+      "accordion-filters",
+      "table-report",
+      "accordion-picker"
+    ]
+  },
+  {
+    "id": "accordion-filters",
+    "components": [
+      "accordion-filters-item"
+    ]
+  },
+  {
+    "id": "accordion-picker",
+    "components": [
+      "accordion-picker-item"
     ]
   },
   {
     "id": "accordion",
     "components": [
       "accordion-item"
+    ]
+  },
+  {
+    "id": "cards-contact",
+    "components": [
+      "cards-contact-card"
     ]
   },
   {
@@ -58,6 +82,24 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "table-alerts",
+    "components": [
+      "table-alerts-row"
+    ]
+  },
+  {
+    "id": "table-report",
+    "components": [
+      "table-report-row"
+    ]
+  },
+  {
+    "id": "table-totals",
+    "components": [
+      "table-totals-row"
     ]
   },
   {

@@ -1,0 +1,141 @@
+/* Table Report - wide 13-column service events report */
+.table-report.block {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* horizontal scroll container: the table scrolls, the page never overflows */
+.table-report .table-report-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-report table {
+  width: 100%;
+  min-width: 900px;
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 2px 0;
+  table-layout: auto;
+  color: var(--text-color);
+  font-size: 12px;
+  line-height: 1.15;
+}
+
+.table-report th,
+.table-report td {
+  box-sizing: border-box;
+  border: 0;
+  text-align: left;
+  vertical-align: top;
+}
+
+.table-report th p,
+.table-report td p {
+  margin: 0;
+}
+
+/* header: light blue cells, 2px white gaps (border-spacing) between columns */
+.table-report thead th {
+  height: 70px;
+  padding: 10px 8px;
+  background-color: #83b8ec;
+  color: #2d4a6a;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* column widths from the report screenshots, per table shape (other shapes size automatically) */
+
+/* Maintenance service events: 13 columns */
+.table-report.block[data-columns='13'] th[data-col='1'] { width: 4.75%; }
+.table-report.block[data-columns='13'] th[data-col='2'] { width: 4.59%; }
+.table-report.block[data-columns='13'] th[data-col='3'] { width: 7.88%; }
+.table-report.block[data-columns='13'] th[data-col='4'] { width: 7%; }
+.table-report.block[data-columns='13'] th[data-col='5'] { width: 10.09%; }
+.table-report.block[data-columns='13'] th[data-col='6'] { width: 10.67%; }
+.table-report.block[data-columns='13'] th[data-col='7'] { width: 7.25%; }
+.table-report.block[data-columns='13'] th[data-col='8'] { width: 8.59%; }
+.table-report.block[data-columns='13'] th[data-col='9'] { width: 6.59%; }
+.table-report.block[data-columns='13'] th[data-col='10'] { width: 6.59%; }
+.table-report.block[data-columns='13'] th[data-col='11'] { width: 6.84%; }
+.table-report.block[data-columns='13'] th[data-col='12'] { width: 6.42%; }
+.table-report.block[data-columns='13'] th[data-col='13'] { width: 12.74%; }
+
+/* Car Facts cars: 12 columns (select, car ... destination) */
+.table-report.block[data-columns='12'] th[data-col='1'] { width: 5.7%; }
+.table-report.block[data-columns='12'] th[data-col='2'] { width: 7.7%; }
+.table-report.block[data-columns='12'] th[data-col='3'] { width: 6.5%; }
+.table-report.block[data-columns='12'] th[data-col='4'] { width: 9.6%; }
+.table-report.block[data-columns='12'] th[data-col='5'] { width: 11%; }
+.table-report.block[data-columns='12'] th[data-col='6'] { width: 14.3%; }
+.table-report.block[data-columns='12'] th[data-col='7'] { width: 9%; }
+.table-report.block[data-columns='12'] th[data-col='8'] { width: 8.8%; }
+.table-report.block[data-columns='12'] th[data-col='9'] { width: 5.8%; }
+.table-report.block[data-columns='12'] th[data-col='10'] { width: 5.8%; }
+.table-report.block[data-columns='12'] th[data-col='11'] { width: 7%; }
+.table-report.block[data-columns='12'] th[data-col='12'] { width: 8.8%; }
+
+/* Car Facts location messages: 6 columns */
+.table-report.block[data-columns='6'] th[data-col='1'] { width: 20.2%; }
+.table-report.block[data-columns='6'] th[data-col='2'] { width: 19.7%; }
+.table-report.block[data-columns='6'] th[data-col='3'] { width: 12.7%; }
+.table-report.block[data-columns='6'] th[data-col='4'] { width: 12.6%; }
+.table-report.block[data-columns='6'] th[data-col='5'] { width: 15.3%; }
+.table-report.block[data-columns='6'] th[data-col='6'] { width: 19.5%; }
+
+/* body: striped rows, no horizontal gaps */
+.table-report tbody td {
+  padding: 10px 8px 18px;
+  color: #333;
+  font-size: 12px;
+}
+
+.table-report tbody tr:nth-child(odd) td {
+  background-color: #e6e6e6;
+}
+
+.table-report tbody tr:nth-child(even) td {
+  background-color: #cacaca;
+}
+
+/* icon cells (:expand:, :alert:, :wrench:) */
+.table-report td .icon {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  vertical-align: top;
+}
+
+.table-report td .icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* "Add Disposition" links: plain underlined links, not decorated buttons */
+.table-report td a:any-link,
+main .table-report td a.button:any-link {
+  display: inline;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: #1f3fbf;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: inherit;
+  text-align: inherit;
+  text-decoration: underline;
+  white-space: normal;
+}
+
+.table-report td a:hover,
+main .table-report td a.button:hover {
+  background: none;
+  color: #1f3fbf;
+  text-decoration: underline;
+}
