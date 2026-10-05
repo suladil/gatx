@@ -1,4 +1,5 @@
 import { showSlide } from '../blocks/carousel/carousel.js';
+import { decorateSaveRow } from '../blocks/accordion-picker/accordion-picker.js';
 import {
   decorateBlock,
   decorateBlocks,
@@ -123,6 +124,8 @@ async function applyChanges(event) {
           decorateButtons(parentElement);
           decorateIcons(parentElement);
           decorateRichtext(parentElement);
+          // re-add the report name input if the accordion-picker save button was replaced
+          parentElement.closest('.section')?.querySelectorAll('.accordion-picker-wrapper').forEach(decorateSaveRow);
         }
         return true;
       }

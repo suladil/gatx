@@ -168,8 +168,12 @@ function findSaveButton(wrapper) {
   return null;
 }
 
+function saveRowOf(saveButton) {
+  return saveButton.closest('.button-container') || saveButton.parentElement;
+}
+
 function addReportName(saveButton) {
-  const container = saveButton.closest('.button-container') || saveButton.parentElement;
+  const container = saveRowOf(saveButton);
   if (!container || container.querySelector('.accordion-picker-report-name')) return container;
   const input = document.createElement('input');
   input.type = 'text';
@@ -184,7 +188,21 @@ function addReportName(saveButton) {
   return container;
 }
 
-function addToggle(heading, targets, block) {
+/**
+ * Adds the report name input to the save row after the block, matching the
+ * picker's collapsed state. Safe to call again after the Universal Editor
+ * replaces the save button.
+ */
+export function decorateSaveRow(wrapper) {
+  const saveButton = findSaveButton(wrapper);
+  if (!saveButton) return null;
+  const row = addReportName(saveButton);
+  row.classList.toggle('accordion-picker-hidden', wrapper.classList.contains('accordion-picker-hidden'));
+  return row;
+}
+
+/** Targets are looked up on each click so a replaced save row is still toggled. */
+function addToggle(heading, getTargets, block) {
   if (heading.querySelector('.accordion-picker-toggle')) return;
   const btn = document.createElement('button');
   btn.type = 'button';
@@ -205,7 +223,7 @@ function addToggle(heading, targets, block) {
     btn.setAttribute('aria-expanded', String(!expanded));
     indicator.textContent = expanded ? '▶' : '▼';
     heading.classList.toggle('accordion-picker-heading-collapsed', expanded);
-    targets.forEach((t) => t.classList.toggle('accordion-picker-hidden', expanded));
+    getTargets().forEach((t) => t.classList.toggle('accordion-picker-hidden', expanded));
   });
 }
 
@@ -218,9 +236,14 @@ export default async function decorate(block) {
   });
 
   const wrapper = block.closest('.accordion-picker-wrapper') || block;
-  const saveButton = findSaveButton(wrapper);
-  const saveRow = saveButton ? addReportName(saveButton) : null;
+  decorateSaveRow(wrapper);
 
   const heading = findHeading(wrapper);
-  if (heading) addToggle(heading, [wrapper, saveRow].filter(Boolean), block);
+  if (heading) {
+    const getTargets = () => {
+      const saveButton = findSaveButton(wrapper);
+      return [wrapper, saveButton && saveRowOf(saveButton)].filter(Boolean);
+    };
+    addToggle(heading, getTargets, block);
+  }
 }
