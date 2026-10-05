@@ -383,6 +383,108 @@ main > .section.page-title h1 {
   font-weight: 400;
 }
 
+/* news articles: white reading panel (dateline, lead, headings, quote, back link) */
+main > .section.article {
+  box-sizing: border-box;
+  max-width: 880px;
+  margin: 16px 10px 24px;
+  border-radius: 6px;
+  padding: 20px 18px;
+  background-color: var(--brand-panel-color);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (width >= 900px) {
+  main > .section.article {
+    margin: 16px auto 32px;
+    padding: 32px 48px;
+  }
+}
+
+main > .section.article > div {
+  max-width: none;
+  padding: 0;
+}
+
+main > .section.article p {
+  margin: 0 0 14px;
+}
+
+main > .section.article > .default-content-wrapper:first-child > :first-child {
+  margin-bottom: 8px;
+  color: #666;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+main > .section.article > .default-content-wrapper:first-child > :nth-child(2) {
+  color: #333;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+main > .section.article h2 {
+  margin: 28px 0 8px;
+  color: var(--brand-title-color);
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+main > .section.article ul {
+  margin: 0 0 14px;
+  padding-left: 22px;
+}
+
+main > .section.article li {
+  margin-bottom: 6px;
+}
+
+main > .section.article .quote-wrapper {
+  margin: 24px 0;
+}
+
+main > .section.article .quote blockquote {
+  max-width: none;
+  margin: 0;
+  border-left: 4px solid var(--brand-action-color);
+  border-radius: 0 3px 3px 0;
+  padding: 16px 20px;
+  background-color: var(--brand-panel-alt-color);
+}
+
+main > .section.article .quote .quote-quotation {
+  color: #1f3f5f;
+  font-size: 18px;
+  font-style: italic;
+}
+
+main > .section.article .quote .quote-attribution {
+  color: #555;
+  font-size: 14px;
+}
+
+main > .section.article .quote .quote-quotation > * {
+  margin: 0;
+}
+
+main > .section.article .quote .quote-attribution > * {
+  margin: 8px 0 0;
+}
+
+main > .section.article > .default-content-wrapper:last-child > :last-child {
+  margin: 28px 0 0;
+  border-top: 1px solid var(--brand-rule-color);
+  padding-top: 16px;
+}
+
+main > .section.article a:any-link {
+  color: #205990;
+  font-weight: 700;
+}
+
 @media (width >= 1200px) {
   main > .section.widget.tall.report-filters {
     grid-column: auto;

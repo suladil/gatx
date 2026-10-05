@@ -37,6 +37,10 @@
             {
               "name": "Page Title",
               "value": "page-title"
+            },
+            {
+              "name": "Article",
+              "value": "article"
             }
           ]
         }

@@ -310,6 +310,55 @@
           ]
         }
       ]
+    },
+    {
+      "name": "article",
+      "urls": [
+        "http://localhost:8765/safety-milestone/"
+      ],
+      "description": "GATX portal news article: page title band, then a white article panel with dateline, lead, headings, body copy, quote and a back-to-portal link",
+      "blocks": [
+        {
+          "name": "quote",
+          "instances": [
+            "article blockquote.quote"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "1",
+          "name": "Page Title",
+          "selector": [
+            ".page-title"
+          ],
+          "style": "page-title",
+          "blocks": [],
+          "defaultContent": [
+            ".page-title .section-name",
+            ".page-title h1"
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Article",
+          "selector": [
+            "article.article"
+          ],
+          "style": "article",
+          "blocks": [
+            "quote"
+          ],
+          "defaultContent": [
+            "article .dateline",
+            "article .lead",
+            "article h2",
+            "article p",
+            "article ul",
+            "article .back"
+          ]
+        }
+      ]
     }
   ],
   "metadata": {
