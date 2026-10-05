@@ -33,6 +33,10 @@
             {
               "name": "Highlight",
               "value": "highlight"
+            },
+            {
+              "name": "Page Title",
+              "value": "page-title"
             }
           ]
         }
@@ -65,7 +69,8 @@
         "cards-contact",
         "accordion-filters",
         "table-report",
-        "accordion-picker"
+        "accordion-picker",
+        "shop-a-car"
       ]
     }
   ]

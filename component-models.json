@@ -136,6 +136,10 @@
           {
             "name": "Highlight",
             "value": "highlight"
+          },
+          {
+            "name": "Page Title",
+            "value": "page-title"
           }
         ]
       }
@@ -452,6 +456,32 @@
             ]
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "shop-a-car",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "intro",
+        "value": "",
+        "label": "Intro Text",
+        "description": "Optional instructions shown above the form"
+      },
+      {
+        "component": "richtext",
+        "name": "confirmation",
+        "value": "",
+        "label": "Confirmation Message",
+        "description": "Shown after the request is submitted. The first link becomes the main button (for example, Return to Portal). Leave empty to use the default message."
+      },
+      {
+        "component": "text",
+        "name": "action",
+        "value": "",
+        "label": "Submission URL",
+        "description": "Where requests are sent. Leave empty to run the form in demo mode (nothing is sent)."
       }
     ]
   },
