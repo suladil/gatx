@@ -116,13 +116,19 @@ function convertIcons(root, doc) {
 // any other a.btn (e.g. .btn.update) -> <p><strong><a>Update »</a></strong></p> (primary).
 // Reports builder rows (.builder .save, .builder .actions) follow the same rule; the
 // "Enter Report Name" input in .save is dropped (accordion-picker re-creates it).
+// Placeholder hrefs from the source are pointed at real pages via BUTTON_TARGETS.
+const BUTTON_TARGETS = {
+  '#save-template': '/maintenance',
+};
+
 function convertButtons(root, doc) {
   root.querySelectorAll('.filters .actions, .builder .save, .builder .actions').forEach((actions) => {
     const links = [...actions.querySelectorAll('a.btn')];
     if (!links.length) return;
     const paras = links.map((a) => {
       const link = doc.createElement('a');
-      link.setAttribute('href', a.getAttribute('href') || '#');
+      const href = a.getAttribute('href') || '#';
+      link.setAttribute('href', BUTTON_TARGETS[href] || href);
       link.textContent = a.textContent.trim();
       const wrap = doc.createElement(a.classList.contains('clear') ? 'em' : 'strong');
       wrap.append(link);
