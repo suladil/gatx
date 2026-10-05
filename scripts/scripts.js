@@ -169,11 +169,33 @@ async function loadEager(doc) {
 }
 
 /**
+ * On AEM author, pages are served under /content/<site>/ so site links such as
+ * /maintenance don't resolve. Map them to the author page path when clicked.
+ * Published pages (aem.page / aem.live) are not affected.
+ * @param {Element} doc The container element
+ */
+function autolinkAuthorPaths(doc) {
+  const [, siteRoot] = window.location.pathname.match(/^(\/content\/[^/]+)\//) || [];
+  if (!siteRoot) return;
+  doc.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href]');
+    if (e.defaultPrevented || !a || a.origin !== window.location.origin) return;
+    const { pathname, search, hash } = new URL(a.href);
+    if (pathname.startsWith('/content/') || pathname === window.location.pathname) return;
+    const page = pathname.replace(/\/$/, '').replace(/\.html$/, '');
+    if (/\.[a-z0-9]+$/i.test(page)) return; // files, e.g. /icons/print.svg
+    e.preventDefault();
+    window.location.assign(`${siteRoot}${page}.html${search}${hash}`);
+  });
+}
+
+/**
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
   autolinkModals(doc);
+  autolinkAuthorPaths(doc);
 
   const main = doc.querySelector('main');
   await loadSections(main);
