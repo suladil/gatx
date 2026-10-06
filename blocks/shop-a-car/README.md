@@ -4,7 +4,7 @@ Custom form block. Purpose: "Shop a Car Request" — customers send a railcar to
 
 ## Authoring (Universal Editor)
 
-Add **Shop a Car Request** to a section. All fields are optional:
+Add **Shop A Car** to a section. All fields are optional:
 
 - **Intro Text** — instructions shown above the form.
 - **Confirmation Message** — shown after submitting. The first link becomes the main button (e.g. Return to Portal). Empty uses the default message, which links to `/portal`.
