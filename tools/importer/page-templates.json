@@ -359,6 +359,62 @@
           ]
         }
       ]
+    },
+    {
+      "name": "shop-a-car",
+      "urls": [
+        "http://localhost:8765/shop-a-car/"
+      ],
+      "description": "GATX portal Shop a Car request page: wide request form panel with stacked sidebar panels (What to Expect, Important!)",
+      "blocks": [
+        {
+          "name": "shop-a-car",
+          "instances": [
+            ".request-form .shop-a-car"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "1",
+          "name": "Request Form",
+          "selector": [
+            "section.request-form"
+          ],
+          "style": "widget, request-form",
+          "blocks": [
+            "shop-a-car"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "2",
+          "name": "What to Expect",
+          "selector": [
+            "section.panel.expect"
+          ],
+          "style": "widget, tall, report-side",
+          "blocks": [],
+          "defaultContent": [
+            "section.panel.expect h2",
+            "section.panel.expect p",
+            "section.panel.expect ul"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Important",
+          "selector": [
+            "section.panel.important"
+          ],
+          "style": "widget, tall, report-side",
+          "blocks": [],
+          "defaultContent": [
+            "section.panel.important h2",
+            "section.panel.important ul"
+          ]
+        }
+      ]
     }
   ],
   "metadata": {

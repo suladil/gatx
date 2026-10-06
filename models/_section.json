@@ -41,6 +41,22 @@
             {
               "name": "Article",
               "value": "article"
+            },
+            {
+              "name": "Widget",
+              "value": "widget"
+            },
+            {
+              "name": "Request Form",
+              "value": "request-form"
+            },
+            {
+              "name": "Sidebar Panel",
+              "value": "tall"
+            },
+            {
+              "name": "Report Sidebar",
+              "value": "report-side"
             }
           ]
         }

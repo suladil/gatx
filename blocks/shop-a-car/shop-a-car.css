@@ -18,6 +18,11 @@ main .shop-a-car {
   font-size: 14px;
 }
 
+/* inside a portal widget panel the section already provides the white panel */
+main .section.widget .shop-a-car {
+  margin: 0;
+}
+
 main .shop-a-car-intro {
   margin-bottom: 12px;
   color: #444;
@@ -25,6 +30,10 @@ main .shop-a-car-intro {
 
 main .shop-a-car-done .shop-a-car-intro {
   display: none;
+}
+
+main .section.widget .shop-a-car-intro {
+  font-size: 15px;
 }
 
 main .shop-a-car-intro p {

@@ -681,6 +681,34 @@ main:has(> .section.report-builder) {
   }
 }
 
+/* request form pages (Shop a Car): wide form panel + stacked sidebar panels */
+main:has(> .section.request-form) {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+@media (width >= 900px) {
+  main:has(> .section.request-form) {
+    grid-template-columns: minmax(0, 1fr) 262px;
+    grid-template-rows: auto auto 1fr;
+    align-items: start;
+  }
+
+  main > .section.widget.request-form {
+    grid-column: 1;
+    grid-row: 1 / -1;
+  }
+
+  main:has(> .section.request-form) > .section.widget.tall.report-side {
+    grid-column: 2;
+    grid-row: auto;
+  }
+}
+
+main > .section.widget.request-form {
+  padding: 0;
+}
+
 main > .section.widget.report-builder {
   padding: 0 0 10px;
   font-size: 12px;
