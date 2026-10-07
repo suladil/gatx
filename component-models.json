@@ -451,6 +451,32 @@
     ]
   },
   {
+    "id": "request-details",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "emptyMessage",
+        "value": "",
+        "label": "No Request Message",
+        "description": "Shown when there is no request to display. Leave empty for the default message."
+      },
+      {
+        "component": "text",
+        "name": "formPage",
+        "value": "",
+        "label": "Form Page",
+        "description": "The Shop a Car form page used by Modify Request. Defaults to /shop-a-car."
+      },
+      {
+        "component": "text",
+        "name": "backPage",
+        "value": "",
+        "label": "Return Page",
+        "description": "Page for the Return to Portal button. Defaults to /portal."
+      }
+    ]
+  },
+  {
     "id": "search",
     "fields": [
       {
@@ -502,6 +528,13 @@
         "value": "",
         "label": "Submission URL",
         "description": "Where requests are sent. Leave empty to run the form in demo mode (nothing is sent)."
+      },
+      {
+        "component": "text",
+        "name": "detailsPage",
+        "value": "",
+        "label": "Request Details Page",
+        "description": "Page opened after submitting, e.g. /shop-a-car-request. Leave empty to show the confirmation on this page."
       }
     ]
   },

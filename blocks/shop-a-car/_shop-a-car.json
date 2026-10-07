@@ -40,6 +40,13 @@
           "value": "",
           "label": "Submission URL",
           "description": "Where requests are sent. Leave empty to run the form in demo mode (nothing is sent)."
+        },
+        {
+          "component": "text",
+          "name": "detailsPage",
+          "value": "",
+          "label": "Request Details Page",
+          "description": "Page opened after submitting, e.g. /shop-a-car-request. Leave empty to show the confirmation on this page."
         }
       ]
     }

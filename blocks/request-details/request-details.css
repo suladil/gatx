@@ -1,0 +1,218 @@
+/* Request Details: a submitted Shop a Car request, grouped like the form */
+main .request-details {
+  --request-details-secondary: #205990;
+
+  padding: 20px 16px 16px;
+  color: var(--text-color);
+  font-size: 14px;
+}
+
+@media (width >= 700px) {
+  main .request-details {
+    padding: 24px 28px 20px;
+  }
+}
+
+main .request-details-notice {
+  margin-bottom: 18px;
+  border-left: 4px solid #2e8540;
+  border-radius: 0 3px 3px 0;
+  padding: 10px 14px;
+  background-color: #e8f3ea;
+  color: #1d4d28;
+}
+
+/* header: request number + status */
+main .request-details-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px 16px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--brand-rule-color);
+  padding-bottom: 14px;
+}
+
+main .request-details .request-details-label {
+  margin: 0;
+  color: #666;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+main .request-details .request-details-header h2 {
+  margin: 2px 0 4px;
+  border: 0;
+  padding: 0;
+  color: var(--brand-title-color);
+  font-size: 24px;
+}
+
+main .request-details .request-details-meta {
+  margin: 0;
+  color: #555;
+  font-size: 13px;
+}
+
+main .request-details-status {
+  border-radius: 12px;
+  padding: 4px 12px;
+  background-color: #fff4d6;
+  color: #7a5200;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* sections */
+main .request-details-section {
+  margin-bottom: 18px;
+}
+
+main .request-details-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px;
+  border-radius: 3px;
+  padding: 8px 10px;
+  background-color: var(--brand-table-head-color);
+  color: #0f2f50;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+main .request-details-step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: var(--request-details-secondary);
+  color: #fff;
+  font-size: 12px;
+}
+
+main .request-details-section dl {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px 20px;
+  margin: 0;
+  padding: 0 4px;
+}
+
+@media (width >= 700px) {
+  main .request-details-section dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  main .request-details-item-wide {
+    grid-column: 1 / -1;
+  }
+}
+
+main .request-details-item dt {
+  margin-bottom: 3px;
+  color: #555;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+main .request-details-item dd {
+  margin: 0;
+  font-size: 14px;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+main .request-details-empty {
+  color: #888;
+}
+
+main .request-details-files {
+  margin: 0;
+  padding-left: 18px;
+}
+
+main .request-details-priority {
+  display: inline-block;
+  border-radius: 3px;
+  padding: 1px 8px;
+  background-color: var(--brand-panel-alt-color);
+  font-weight: 700;
+}
+
+main .request-details-priority-high {
+  background-color: #fff4d6;
+  color: #7a5200;
+}
+
+main .request-details-priority-urgent {
+  background-color: var(--brand-accent-color);
+  color: #fff;
+}
+
+/* actions */
+main .request-details-actions {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  margin-top: 8px;
+  border-top: 1px solid var(--brand-rule-color);
+  padding-top: 16px;
+}
+
+@media (width >= 700px) {
+  main .request-details-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}
+
+main .request-details-actions a:any-link {
+  box-sizing: border-box;
+  border: 1px solid var(--request-details-secondary);
+  border-radius: 3px;
+  padding: 9px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  text-decoration: none;
+}
+
+main .request-details-actions a.request-details-back:any-link {
+  background-color: #fff;
+  color: var(--request-details-secondary);
+}
+
+main .request-details-actions a.request-details-modify:any-link {
+  border-color: var(--brand-action-color);
+  background-color: var(--brand-action-color);
+  color: #fff;
+}
+
+main .request-details-actions a.request-details-back:hover {
+  background-color: #eaf1f8;
+}
+
+main .request-details-actions a.request-details-modify:hover {
+  border-color: #d35a08;
+  background-color: #d35a08;
+}
+
+/* no request yet */
+main .request-details .request-details-none h2 {
+  margin: 0 0 8px;
+  border: 0;
+  padding: 0;
+  font-size: 22px;
+}
+
+main .request-details .request-details-none p {
+  margin: 0 0 8px;
+}

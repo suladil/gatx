@@ -1,16 +1,22 @@
 /*
  * Shop a Car Request Block
  * Customer form for sending a railcar to a shop for maintenance or repair.
- * Rows (all optional): intro text | confirmation message | submission URL.
+ * Rows (all optional): intro text | confirmation message | submission URL | details page.
  * The fields are fixed in code. Without a submission URL the form runs in demo
  * mode: it validates and shows the confirmation, but sends nothing.
  * "Save for Later" keeps a draft (without attachments) in the browser.
+ * Submitted requests are kept in the browser so the request-details block can show
+ * them; with a details page set, submitting opens it. ?edit=<request id> reopens a
+ * request in the form for changes.
  */
 
+import { resolveSitePath } from '../../scripts/scripts.js';
+
 const DRAFT_KEY = 'gatx-shop-a-car-draft';
+const REQUESTS_KEY = 'gatx-shop-a-car-requests';
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
-const SECTIONS = [
+export const SECTIONS = [
   {
     title: 'Railcar Information',
     fields: [
@@ -115,7 +121,7 @@ function formatSize(bytes) {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-function formatDate(value) {
+export function formatDate(value) {
   const [y, m, d] = value.split('-');
   return y ? `${m}/${d}/${y}` : value;
 }
@@ -311,6 +317,46 @@ function restoreDraft(form, draft) {
   });
 }
 
+/* submitted requests (kept in the browser until there is a request system to read from) */
+
+export function readRequests() {
+  try {
+    return JSON.parse(localStorage.getItem(REQUESTS_KEY)) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+export function findRequest(id) {
+  return readRequests().find((request) => request.id === id) || null;
+}
+
+function newRequestId() {
+  const d = new Date();
+  const pad = (n) => String(n).padStart(2, '0');
+  const serial = Math.floor(1000 + Math.random() * 9000);
+  return `SCR-${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${serial}`;
+}
+
+function saveRequest(form, existing) {
+  const values = {};
+  ALL_FIELDS.filter((f) => f.type !== 'file').forEach((field) => {
+    values[field.name] = form.elements[field.name].value;
+  });
+  const files = [...form.elements.attachments.files].map((f) => f.name);
+  const now = Date.now();
+  const request = existing
+    ? {
+      ...existing, values, attachments: files.length ? files : existing.attachments, updatedAt: now,
+    }
+    : {
+      id: newRequestId(), status: 'Submitted', submittedAt: now, updatedAt: now, values, attachments: files,
+    };
+  const others = readRequests().filter((r) => r.id !== request.id);
+  localStorage.setItem(REQUESTS_KEY, JSON.stringify([request, ...others].slice(0, 20)));
+  return request;
+}
+
 function showStatus(form, message, action) {
   const status = form.querySelector('.shop-a-car-status');
   status.replaceChildren(message);
@@ -335,7 +381,8 @@ function defaultConfirmation() {
   return wrap;
 }
 
-function buildConfirmation(message, values, onReset) {
+function buildConfirmation(message, request, onReset) {
+  const { values } = request;
   const panel = el('div', { className: 'shop-a-car-confirmation', tabindex: '-1' });
   panel.append(el('h2', {}, 'Request Received'));
   const body = el('div', { className: 'shop-a-car-confirmation-message' });
@@ -346,6 +393,7 @@ function buildConfirmation(message, values, onReset) {
 
   const summary = el('dl', { className: 'shop-a-car-summary' });
   [
+    ['Request Number', request.id],
     ['Railcar Number', values.railcarNumber],
     ['Type of Service', values.serviceType],
     ['Priority', values.priority],
@@ -370,19 +418,45 @@ async function send(form, action) {
  * @param {Element} block
  */
 export default function decorate(block) {
-  const [intro, confirmation, actionRow] = [...block.children].map((row) => row.firstElementChild);
+  const [intro, confirmation, actionRow, detailsRow] = [...block.children]
+    .map((row) => row.firstElementChild);
   const action = actionRow?.querySelector('a')?.href || actionRow?.textContent.trim() || '';
+  const detailsPage = detailsRow?.querySelector('a')?.getAttribute('href') || detailsRow?.textContent.trim() || '';
   const message = confirmation?.textContent.trim() ? confirmation : null;
+  const editId = new URLSearchParams(window.location.search).get('edit');
+  const editing = editId ? findRequest(editId) : null;
+  const submitLabel = editing ? 'Update Request' : 'Submit Request';
+  const detailsUrl = (request, flag) => resolveSitePath(`${detailsPage}?id=${encodeURIComponent(request.id)}&${flag}=1`);
 
   const form = buildForm();
   const content = el('div', { className: 'shop-a-car-body' });
-  if (intro?.textContent.trim()) {
+  if (intro?.textContent.trim() && !editing) {
     content.append(el('div', { className: 'shop-a-car-intro' }, ...intro.childNodes));
   }
   content.append(form);
   block.replaceChildren(content);
 
-  const draft = readDraft();
+  const draft = editId ? null : readDraft();
+  if (editing) {
+    // modify an existing request: prefill it, no drafts
+    restoreDraft(form, editing);
+    form.querySelector('.shop-a-car-save').remove();
+    form.querySelector('.shop-a-car-submit').textContent = submitLabel;
+    const banner = el(
+      'div',
+      { className: 'shop-a-car-editing' },
+      el('p', {}, el('strong', {}, `Modifying request ${editing.id}`), ' — update the details below and click Update Request.'),
+    );
+    if (editing.attachments?.length) {
+      banner.append(el('p', {}, `Attached: ${editing.attachments.join(', ')}. Choose files only to replace them.`));
+    }
+    if (detailsPage) {
+      banner.append(el('p', {}, el('a', { href: resolveSitePath(`${detailsPage}?id=${encodeURIComponent(editing.id)}`) }, 'Cancel and return to the request')));
+    }
+    form.prepend(banner);
+  } else if (editId) {
+    showStatus(form, `Request ${editId} couldn't be found on this device. You can submit a new request below.`);
+  }
   if (draft) {
     restoreDraft(form, draft);
     const discard = el('button', { type: 'button', className: 'shop-a-car-link-button' }, 'Discard draft');
@@ -406,7 +480,7 @@ export default function decorate(block) {
     });
   });
 
-  form.querySelector('.shop-a-car-save').addEventListener('click', () => {
+  form.querySelector('.shop-a-car-save')?.addEventListener('click', () => {
     saveDraft(form);
     const note = form.elements.attachments.files.length ? ' Attachments are not saved with drafts.' : '';
     showStatus(form, `Draft saved ${savedTime(Date.now())}. You can finish this request later on this device.${note}`);
@@ -420,12 +494,16 @@ export default function decorate(block) {
     }
     const submit = form.querySelector('.shop-a-car-submit');
     submit.disabled = true;
-    submit.textContent = 'Submitting…';
+    submit.textContent = editing ? 'Updating…' : 'Submitting…';
     try {
       await send(form, action);
-      const values = Object.fromEntries(new FormData(form));
-      localStorage.removeItem(DRAFT_KEY);
-      const panel = buildConfirmation(message, values, () => {
+      const request = saveRequest(form, editing);
+      if (!editing) localStorage.removeItem(DRAFT_KEY);
+      if (detailsPage) {
+        window.location.assign(detailsUrl(request, editing ? 'updated' : 'submitted'));
+        return;
+      }
+      const panel = buildConfirmation(message, request, () => {
         form.reset();
         renderFiles(form);
         showStatus(form, '');
@@ -441,7 +519,7 @@ export default function decorate(block) {
       showStatus(form, 'Your request could not be submitted. Please try again, or save it for later.');
     } finally {
       submit.disabled = false;
-      submit.textContent = 'Submit Request';
+      submit.textContent = submitLabel;
     }
   });
 }

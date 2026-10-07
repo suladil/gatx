@@ -415,6 +415,48 @@
           ]
         }
       ]
+    },
+    {
+      "name": "shop-a-car-request",
+      "urls": [
+        "http://localhost:8765/shop-a-car-request/"
+      ],
+      "description": "GATX portal Shop a Car request details page: wide request details panel with a What Happens Next sidebar panel",
+      "blocks": [
+        {
+          "name": "request-details",
+          "instances": [
+            ".request-form .request-details"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "1",
+          "name": "Request Details",
+          "selector": [
+            "section.request-form"
+          ],
+          "style": "widget, request-form",
+          "blocks": [
+            "request-details"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "2",
+          "name": "What Happens Next",
+          "selector": [
+            "section.panel.next"
+          ],
+          "style": "widget, tall, report-side",
+          "blocks": [],
+          "defaultContent": [
+            "section.panel.next h2",
+            "section.panel.next ul"
+          ]
+        }
+      ]
     }
   ],
   "metadata": {

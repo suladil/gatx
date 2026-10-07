@@ -168,6 +168,26 @@ async function loadEager(doc) {
   }
 }
 
+const [, AUTHOR_SITE_ROOT] = window.location.pathname.match(/^(\/content\/[^/]+)\//) || [];
+
+/**
+ * Maps a site link such as /maintenance to its AEM author page path when running on
+ * author (/content/<site>/maintenance.html). Elsewhere, and for files, other origins and
+ * links to the current page, the link is returned unchanged.
+ * @param {string} href Absolute or root-relative link
+ * @returns {string}
+ */
+export function resolveSitePath(href) {
+  if (!AUTHOR_SITE_ROOT) return href;
+  const url = new URL(href, window.location.href);
+  if (url.origin !== window.location.origin) return href;
+  const { pathname, search, hash } = url;
+  if (pathname.startsWith('/content/') || pathname === window.location.pathname) return href;
+  const page = pathname.replace(/\/$/, '').replace(/\.html$/, '');
+  if (/\.[a-z0-9]+$/i.test(page)) return href; // files, e.g. /icons/print.svg
+  return `${AUTHOR_SITE_ROOT}${page}.html${search}${hash}`;
+}
+
 /**
  * On AEM author, pages are served under /content/<site>/ so site links such as
  * /maintenance don't resolve. Point them at the author page path instead, also for
@@ -176,15 +196,10 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 function autolinkAuthorPaths(doc) {
-  const [, siteRoot] = window.location.pathname.match(/^(\/content\/[^/]+)\//) || [];
-  if (!siteRoot) return;
+  if (!AUTHOR_SITE_ROOT) return;
   const rewrite = () => doc.querySelectorAll('a[href]').forEach((a) => {
-    if (a.origin !== window.location.origin) return;
-    const { pathname, search, hash } = new URL(a.href);
-    if (pathname.startsWith('/content/') || pathname === window.location.pathname) return;
-    const page = pathname.replace(/\/$/, '').replace(/\.html$/, '');
-    if (/\.[a-z0-9]+$/i.test(page)) return; // files, e.g. /icons/print.svg
-    a.href = `${siteRoot}${page}.html${search}${hash}`;
+    const href = resolveSitePath(a.href);
+    if (href !== a.href) a.href = href;
   });
   rewrite();
   // rewritten links start with /content/, so the observer's own changes are no-ops

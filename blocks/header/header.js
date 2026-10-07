@@ -43,7 +43,8 @@ function normalizePath(href) {
 }
 
 /**
- * Marks the tab whose link points at the current page.
+ * Marks the tab whose link points at the current page, or at its parent page
+ * (e.g. the Shop a Car tab on /shop-a-car-request).
  * @param {Element} tabs
  */
 function markActiveTab(tabs) {
@@ -52,7 +53,8 @@ function markActiveTab(tabs) {
   tabs.querySelectorAll('a').forEach((a) => {
     a.classList.add('nav-trigger');
     const href = a.getAttribute('href');
-    if (href && !href.startsWith('#') && normalizePath(a.href) === current) {
+    const tab = href && !href.startsWith('#') ? normalizePath(a.href) : null;
+    if (tab && (current === tab || (tab !== '/' && current.startsWith(`${tab}-`)))) {
       a.setAttribute('aria-current', 'page');
       a.closest('li').classList.add('active');
     }
