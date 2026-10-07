@@ -371,22 +371,24 @@ function savedTime(timestamp) {
 
 /* confirmation */
 
-function defaultConfirmation() {
+function defaultConfirmation(updated) {
   const wrap = document.createElement('div');
   wrap.append(
-    el('p', {}, 'Thank you. Your Shop a Car request has been received and sent to the GATX service team for review.'),
+    el('p', {}, updated
+      ? 'Your changes have been saved and sent to the GATX service team.'
+      : 'Thank you. Your Shop a Car request has been received and sent to the GATX service team for review.'),
     el('p', {}, 'You can return to the portal at any time to review the status of this request.'),
     el('p', {}, el('a', { href: '/portal' }, 'Return to Portal')),
   );
   return wrap;
 }
 
-function buildConfirmation(message, request, onReset) {
+function buildConfirmation(message, request, onReset, updated) {
   const { values } = request;
   const panel = el('div', { className: 'shop-a-car-confirmation', tabindex: '-1' });
-  panel.append(el('h2', {}, 'Request Received'));
+  panel.append(el('h2', {}, updated ? 'Request Updated' : 'Request Received'));
   const body = el('div', { className: 'shop-a-car-confirmation-message' });
-  body.append(...(message ? message.cloneNode(true) : defaultConfirmation()).childNodes);
+  body.append(...(message ? message.cloneNode(true) : defaultConfirmation(updated)).childNodes);
   // first link in the message is the main action
   const link = body.querySelector('a');
   if (link) link.classList.add('shop-a-car-portal-link');
@@ -402,7 +404,12 @@ function buildConfirmation(message, request, onReset) {
 
   const again = el('button', { type: 'button', className: 'shop-a-car-again secondary' }, 'Submit Another Request');
   again.addEventListener('click', onReset);
-  panel.append(body, summary, el('div', { className: 'shop-a-car-actions' }, again));
+  // reopens this request in the form (?edit=<id>) on the current page
+  const modify = el('a', {
+    href: `${window.location.pathname}?edit=${encodeURIComponent(request.id)}`,
+    className: 'shop-a-car-modify',
+  }, 'Modify Request');
+  panel.append(body, summary, el('div', { className: 'shop-a-car-actions' }, again, modify));
   return panel;
 }
 
@@ -504,13 +511,18 @@ export default function decorate(block) {
         return;
       }
       const panel = buildConfirmation(message, request, () => {
+        if (editing) {
+          // leave modify mode for a fresh request
+          window.location.assign(window.location.pathname);
+          return;
+        }
         form.reset();
         renderFiles(form);
         showStatus(form, '');
         panel.replaceWith(form);
         content.classList.remove('shop-a-car-done');
         form.elements.railcarNumber.focus();
-      });
+      }, !!editing);
       form.replaceWith(panel);
       content.classList.add('shop-a-car-done');
       panel.focus();

@@ -341,7 +341,8 @@ main .shop-a-car-actions {
 }
 
 main .shop-a-car-actions button,
-main .shop-a-car-confirmation .shop-a-car-portal-link {
+main .shop-a-car-confirmation .shop-a-car-portal-link,
+main .shop-a-car-confirmation .shop-a-car-modify {
   box-sizing: border-box;
   margin: 0;
   border: 1px solid transparent;
@@ -444,6 +445,19 @@ main .shop-a-car-confirmation .shop-a-car-portal-link:any-link {
 
 main .shop-a-car-confirmation .shop-a-car-portal-link:hover {
   background-color: #d35a08;
+  color: #fff;
+}
+
+main .shop-a-car-confirmation .shop-a-car-modify:any-link {
+  display: inline-block;
+  border-color: var(--shop-a-car-secondary);
+  background-color: var(--shop-a-car-secondary);
+  color: #fff;
+}
+
+main .shop-a-car-confirmation .shop-a-car-modify:hover {
+  border-color: #174673;
+  background-color: #174673;
   color: #fff;
 }
 
